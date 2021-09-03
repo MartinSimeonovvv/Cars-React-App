@@ -22,12 +22,8 @@ function Register({
             repeatPass: Yup.string()
                 .oneOf([Yup.ref('password'), null], 'Passwords must match!')
         }),
-        onSubmit: async ({ email, password, repeatPass }) => {
+        onSubmit: async ({ email, password }) => {
             try {
-                if (password !== repeatPass) {
-                    throw new Error('Passwords don\'t match!');
-                }
-
                 const response = await fetch('https://cars-react-app-server.herokuapp.com/users/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

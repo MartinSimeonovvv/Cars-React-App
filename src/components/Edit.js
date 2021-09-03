@@ -23,13 +23,9 @@ function Edit({
         const { brand, model, description, year, imageUrl, price } = e.target;
 
         try {
-            if (Number(year) < 0 || Number(price) < 0) {
+            if (Number(year.value) <= 0 || Number(price.value) <= 0) {
                 throw new Error('Year and price must be positive numbers!');
             } 
-
-            if (!brand || !model || !description || !year || !imageUrl || !price) {
-                throw new Error('All fields must be filled!');
-            }
 
             await fetch(url, {
                 method: 'PUT',
@@ -60,22 +56,22 @@ function Edit({
                     <hr />
 
                     <p>Car Brand</p>
-                    <input type="text" placeholder="Enter Car Brand" name="brand" defaultValue={singleCar.brand} />
+                    <input type="text" placeholder="Enter Car Brand" name="brand" defaultValue={singleCar.brand} required/>
 
                     <p>Car Model</p>
-                    <input type="text" placeholder="Enter Car Model" name="model" defaultValue={singleCar.model} />
+                    <input type="text" placeholder="Enter Car Model" name="model" defaultValue={singleCar.model} required/>
 
                     <p>Description</p>
-                    <input type="text" placeholder="Enter Description" name="description" defaultValue={singleCar.description} />
+                    <input type="text" placeholder="Enter Description" name="description" defaultValue={singleCar.description} required/>
 
                     <p>Car Year</p>
-                    <input type="number" placeholder="Enter Car Year" name="year" defaultValue={singleCar.year} />
+                    <input type="number" placeholder="Enter Car Year" name="year" defaultValue={singleCar.year} required/>
 
                     <p>Car Image</p>
-                    <input type="text" placeholder="Enter Car Image" name="imageUrl" defaultValue={singleCar.imageUrl} />
+                    <input type="text" placeholder="Enter Car Image" name="imageUrl" defaultValue={singleCar.imageUrl} required/>
 
                     <p>Car Price</p>
-                    <input type="number" placeholder="Enter Car Price" name="price" defaultValue={singleCar.price} />
+                    <input type="number" placeholder="Enter Car Price" name="price" defaultValue={singleCar.price} required/>
 
                     <hr />
                     <input type="submit" class="registerbtn" value="Edit Listing" />
